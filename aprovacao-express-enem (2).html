@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprovação Express ENEM — Revise rápido, organizado e sem gastar fortuna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#12294F;
+    --navy-deep:#0B1A33;
+    --blue:#2F6FE4;
+    --blue-soft:#E8F0FE;
+    --yellow:#FFC93C;
+    --orange:#FF6B35;
+    --paper:#F7F9FC;
+    --white:#FFFFFF;
+    --ink:#0E1B2E;
+    --ink-soft:#4B5A72;
+    --line:#DDE4F0;
+    --radius:18px;
+    --shadow-sm:0 2px 10px rgba(18,41,79,0.06);
+    --shadow-md:0 12px 32px rgba(18,41,79,0.12);
+    --shadow-lg:0 24px 60px rgba(18,41,79,0.18);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+
+  h1,h2,h3,.font-display{font-family:'Sora', sans-serif;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    font-weight:700;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--blue);
+    background:var(--blue-soft);
+    padding:7px 14px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:6px; height:6px; border-radius:50%;
+    background:var(--blue);
+  }
+  .eyebrow.on-dark{ background:rgba(255,255,255,0.1); color:var(--yellow); }
+  .eyebrow.on-dark::before{ background:var(--yellow); }
+
+  .section{ padding:96px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  h2.headline{
+    font-size:clamp(28px,4vw,42px);
+    font-weight:800;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+    color:var(--navy-deep);
+  }
+  .lede{
+    margin-top:14px;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:16.5px;
+    padding:18px 32px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(180deg, var(--yellow), #FFB300);
+    color:var(--navy-deep);
+    box-shadow:0 10px 24px rgba(255,179,0,0.4);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 32px rgba(255,179,0,0.5); }
+  .btn-primary:active{ transform:translateY(0px); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--white);
+    border:1.5px solid rgba(255,255,255,0.35);
+  }
+  .btn-ghost:hover{ border-color:rgba(255,255,255,0.7); background:rgba(255,255,255,0.06); }
+  .btn-block{ width:100%; }
+  .btn-arrow{ transition:transform .18s ease; }
+  .btn:hover .btn-arrow{ transform:translateX(3px); }
+
+  .trust-row{
+    display:flex; flex-wrap:wrap; gap:18px 28px;
+    margin-top:22px;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.75);
+    font-family:'JetBrains Mono', monospace;
+  }
+  .trust-row span{ display:flex; align-items:center; gap:7px; }
+  .dot{ width:5px; height:5px; border-radius:50%; background:var(--yellow); flex:none; }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,26,51,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .nav-brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Sora',sans-serif; font-weight:800; color:var(--white); font-size:16px;
+  }
+  .nav-brand .badge{
+    width:30px;height:30px;border-radius:9px;
+    background:linear-gradient(135deg,var(--yellow),var(--orange));
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;
+  }
+  .nav .btn-primary{ padding:11px 22px; font-size:14px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:radial-gradient(ellipse 900px 500px at 15% -10%, rgba(47,111,228,0.35), transparent),
+               linear-gradient(180deg, var(--navy-deep), var(--navy) 60%, var(--navy));
+    color:var(--white);
+    padding:76px 0 120px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size:26px 26px;
+    mask-image:linear-gradient(180deg, transparent, black 30%, black 70%, transparent);
+    pointer-events:none;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(32px,4.6vw,52px);
+    line-height:1.1;
+    font-weight:800;
+    letter-spacing:-0.015em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(180deg, var(--yellow), #FFA53C);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero .lede{ color:rgba(255,255,255,0.78); font-size:18px; max-width:520px; }
+  .hero-ctas{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+  .hero-visual{ position:relative; }
+  .mindmap-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:24px;
+    padding:20px;
+    box-shadow:var(--shadow-lg);
+    position:relative;
+  }
+  .mindmap-card .frame-label{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:rgba(255,255,255,0.5);
+    letter-spacing:0.06em;
+  }
+  .frame-dots span{ display:inline-block; width:8px;height:8px;border-radius:50%; margin-left:5px; }
+
+  /* ---------- HERO APP PREVIEW MOCKUP ---------- */
+  .app-preview{ padding:26px 22px 30px; position:relative; }
+
+  .live-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    color:rgba(255,255,255,0.85);
+    border-radius:100px;
+    padding:7px 14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; font-weight:700;
+    margin-bottom:22px;
+  }
+  .live-pill .pulse{
+    width:7px;height:7px;border-radius:50%; background:#4ADE80;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(74,222,128,0.55); }
+    70%{ box-shadow:0 0 0 8px rgba(74,222,128,0); }
+    100%{ box-shadow:0 0 0 0 rgba(74,222,128,0); }
+  }
+
+  .rocket-block{ margin-bottom:22px; }
+  .rocket-headline{
+    font-family:'Sora',sans-serif;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.3;
+    color:#fff;
+    margin-bottom:10px;
+  }
+  .rocket-sub{
+    font-size:14px;
+    line-height:1.6;
+    color:rgba(255,255,255,0.65);
+  }
+
+  .check-list-v2{ display:flex; flex-direction:column; gap:11px; }
+  .check-item{
+    display:flex; align-items:center; gap:12px;
+    background:rgba(255,255,255,0.045);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:12px;
+    padding:13px 14px;
+    font-size:14px; font-weight:600;
+    color:rgba(255,255,255,0.92);
+  }
+  .check-ic{
+    flex:none; width:24px; height:24px; border-radius:50%;
+    background:linear-gradient(135deg,var(--yellow),var(--orange));
+    color:var(--navy-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:800;
+  }
+
+  .floating-badge{
+    position:absolute;
+    right:-14px; bottom:-18px;
+    background:#fff;
+    color:var(--navy-deep);
+    border-radius:14px;
+    padding:12px 16px;
+    box-shadow:var(--shadow-lg);
+    display:flex; align-items:center; gap:10px;
+    max-width:230px;
+  }
+  .floating-badge .stars{ color:#FFB300; font-size:14px; letter-spacing:1px; flex:none; }
+  .floating-badge b{ font-family:'Sora',sans-serif; font-size:13px; display:block; }
+  .floating-badge span{ font-size:11px; color:var(--ink-soft); }
+
+  @media (max-width:600px){
+    .floating-badge{ right:6px; bottom:-16px; max-width:190px; padding:10px 12px; }
+  }
+
+  /* ---------- SOLUTION MATERIAL PREVIEW ---------- */
+  .material-preview{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:22px;
+    box-shadow:var(--shadow-md);
+    overflow:hidden;
+  }
+  .material-preview .mp-top{
+    background:var(--navy-deep);
+    padding:16px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .material-preview .mp-top span{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.06em;
+  }
+  .material-preview .mp-top .mp-tag{
+    background:rgba(255,201,60,0.15); color:var(--yellow);
+    padding:4px 10px; border-radius:100px; font-size:10.5px; font-weight:700;
+  }
+  .material-preview .mp-body{ padding:28px 26px 24px; }
+  .material-preview .mp-title{ font-family:'Sora',sans-serif; font-weight:800; font-size:17px; color:var(--navy-deep); margin-bottom:4px; }
+  .material-preview .mp-subtitle{ font-size:12.5px; color:var(--ink-soft); margin-bottom:20px; }
+  .material-preview .mp-lock{
+    display:flex; align-items:center; gap:10px;
+    background:var(--paper);
+    border:1px dashed var(--line);
+    border-radius:12px;
+    padding:12px 14px;
+    margin-top:18px;
+    font-size:12.5px; color:var(--ink-soft);
+  }
+  .stat-chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+  .stat-chip{
+    display:flex; align-items:center; gap:7px;
+    background:var(--blue-soft); color:var(--navy);
+    font-size:12.5px; font-weight:700;
+    padding:8px 13px; border-radius:100px;
+  }
+  .stat-chip:nth-child(2){ background:#FFF6DF; }
+  .stat-chip:nth-child(4){ background:#FFF6DF; }
+
+  .card-deck{
+    display:flex;
+    justify-content:center;
+    padding:14px 0 6px;
+  }
+  .deck-card{
+    width:92px; height:118px;
+    border-radius:14px;
+    border:1px solid rgba(18,41,79,0.08);
+    box-shadow:0 8px 20px rgba(18,41,79,0.1);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px;
+    margin-left:-28px;
+    transition:transform .25s ease;
+  }
+  .deck-card:first-child{ margin-left:0; }
+  .card-deck:hover .deck-card{ transform:translateY(-6px) rotate(0deg) !important; }
+  .deck-card .deck-dot{
+    width:34px; height:34px; border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px;
+    color:#fff;
+  }
+  .deck-card span:last-child{ font-family:'Sora',sans-serif; font-weight:700; font-size:11.5px; color:var(--navy-deep); }
+
+  @media (max-width:600px){
+    .deck-card{ width:76px; height:100px; margin-left:-22px; }
+  }
+
+  /* ---------- PAIN SECTION ---------- */
+  .pain-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .pain-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 22px;
+    box-shadow:var(--shadow-sm);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .pain-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-md); }
+  .pain-card .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700;
+    color:var(--orange);
+    margin-bottom:14px;
+  }
+  .pain-card h3{ font-size:16.5px; font-weight:700; color:var(--navy-deep); line-height:1.35; margin-bottom:8px;}
+  .pain-card p{ font-size:14px; color:var(--ink-soft); line-height:1.55; }
+
+  /* ---------- SOLUTION ---------- */
+  .solution{
+    background:var(--white);
+  }
+  .solution-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .benefit-list{ margin-top:26px; display:flex; flex-direction:column; gap:16px; }
+  .benefit-item{ display:flex; gap:14px; align-items:flex-start; }
+  .benefit-icon{
+    flex:none; width:36px; height:36px; border-radius:10px;
+    background:var(--blue-soft); color:var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:15px;
+  }
+  .benefit-item h4{ font-size:15.5px; font-weight:700; color:var(--navy-deep); margin-bottom:2px; }
+  .benefit-item p{ font-size:14px; color:var(--ink-soft); line-height:1.5; }
+
+  .node-diagram{ position:relative; }
+
+  /* ---------- WHAT YOU GET ---------- */
+  .get-section{ background:var(--paper); }
+  .get-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .subject-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 16px;
+    text-align:center;
+    box-shadow:var(--shadow-sm);
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position:relative;
+  }
+  .subject-card:hover{ transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--blue); }
+  .subject-card .node-dot{
+    width:44px;height:44px;border-radius:50%;
+    margin:0 auto 14px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12.5px;
+    color:var(--white);
+  }
+  .subject-card h4{ font-size:14.5px; font-weight:700; color:var(--navy-deep); line-height:1.3; }
+
+  .bonus-strip{
+    background:var(--navy-deep);
+    border-radius:20px;
+    padding:36px 32px;
+    margin-top:34px;
+    color:var(--white);
+  }
+  .bonus-strip-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:22px;}
+  .bonus-strip-head h3{ font-size:20px; font-weight:800; }
+  .bonus-strip-head span{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--yellow); letter-spacing:0.06em;}
+  .bonus-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .bonus-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px;
+    padding:18px;
+  }
+  .bonus-card .emoji{ font-size:22px; margin-bottom:10px; }
+  .bonus-card h5{ font-size:14px; font-weight:700; margin-bottom:4px; }
+  .bonus-card p{ font-size:12.5px; color:rgba(255,255,255,0.65); line-height:1.5; }
+
+  /* ---------- DIFFERENTIAL ---------- */
+  .diff-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .diff-col{
+    border-radius:20px;
+    padding:32px 28px;
+  }
+  .diff-col.before{
+    background:var(--white);
+    border:1.5px dashed var(--line);
+  }
+  .diff-col.after{
+    background:linear-gradient(160deg, var(--navy), var(--navy-deep));
+    color:var(--white);
+    box-shadow:var(--shadow-md);
+  }
+  .diff-tag{
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px; font-weight:700; letter-spacing:0.08em;
+    padding:5px 12px; border-radius:100px;
+    margin-bottom:18px;
+  }
+  .diff-col.before .diff-tag{ background:#FBE9E4; color:var(--orange); }
+  .diff-col.after .diff-tag{ background:rgba(255,201,60,0.18); color:var(--yellow); }
+  .diff-col li{
+    display:flex; gap:10px; align-items:flex-start;
+    font-size:15px; line-height:1.5;
+    padding:10px 0;
+    border-top:1px solid rgba(0,0,0,0.06);
+  }
+  .diff-col.after li{ border-top:1px solid rgba(255,255,255,0.1); }
+  .diff-col li:first-of-type{ border-top:none; }
+  .diff-col.before li::before{ content:"✕"; color:var(--orange); font-weight:700; }
+  .diff-col.after li::before{ content:"✓"; color:var(--yellow); font-weight:700; }
+
+  /* ---------- ORDER BUMP PREVIEW ---------- */
+  .bump-section{ background:var(--white); }
+  .bump-card{
+    max-width:680px; margin:0 auto;
+    background:var(--paper);
+    border:2px dashed var(--blue);
+    border-radius:20px;
+    padding:30px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+  }
+  .bump-check{
+    flex:none; width:26px;height:26px;border-radius:7px;
+    background:var(--blue); color:var(--white);
+    display:flex;align-items:center;justify-content:center; font-size:14px; font-weight:700;
+    margin-top:3px;
+  }
+  .bump-card h4{ font-size:16.5px; font-weight:800; color:var(--navy-deep); margin-bottom:6px; }
+  .bump-card p{ font-size:14px; color:var(--ink-soft); line-height:1.55; }
+  .bump-tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--blue);
+    letter-spacing:0.08em; margin-bottom:8px; display:block;
+  }
+
+  /* ---------- OFFER ---------- */
+  .offer-section{
+    background:linear-gradient(180deg, var(--navy-deep), var(--navy));
+    color:var(--white);
+  }
+  .offer-card{
+    max-width:620px; margin:0 auto;
+    background:var(--white);
+    color:var(--ink);
+    border-radius:28px;
+    padding:46px 40px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.4);
+    text-align:center;
+  }
+  .offer-card .stamp{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700; color:var(--blue);
+    letter-spacing:0.1em;
+    margin-bottom:6px;
+  }
+  .offer-card h3{ font-size:24px; font-weight:800; color:var(--navy-deep); margin-bottom:20px; }
+  .value-stack{ text-align:left; margin:0 auto 24px; max-width:400px; }
+  .value-stack li{
+    display:flex; justify-content:space-between; gap:10px;
+    font-size:14.5px; padding:9px 0;
+    border-bottom:1px dashed var(--line);
+    color:var(--ink-soft);
+  }
+  .value-stack li b{ color:var(--navy-deep); font-weight:700; }
+  .value-stack li .val{ font-family:'JetBrains Mono',monospace; font-size:13px; }
+  .price-block{ margin:26px 0; }
+  .price-old{ font-family:'JetBrains Mono',monospace; color:var(--ink-soft); text-decoration:line-through; font-size:15px;}
+  .price-new{ font-family:'Sora',sans-serif; font-size:46px; font-weight:800; color:var(--navy-deep); }
+  .price-new sup{ font-size:20px; top:-18px; }
+  .price-note{ font-size:13px; color:var(--ink-soft); margin-top:4px; }
+  .guarantee-row{
+    display:flex; align-items:center; gap:12px;
+    justify-content:center;
+    margin-top:22px;
+    font-size:13px; color:var(--ink-soft);
+  }
+  .guarantee-badge{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--blue-soft); color:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px; flex:none;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-section{ background:var(--paper); }
+  .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .faq-item{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .faq-q{
+    width:100%;
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    padding:20px 22px;
+    background:none; border:none; cursor:pointer;
+    text-align:left;
+    font-family:'Sora',sans-serif; font-size:15.5px; font-weight:700; color:var(--navy-deep);
+  }
+  .faq-q .plus{
+    flex:none; width:26px;height:26px;border-radius:50%;
+    background:var(--blue-soft); color:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px; font-weight:700;
+    transition:transform .25s ease;
+  }
+  .faq-item.open .faq-q .plus{ transform:rotate(45deg); background:var(--yellow); color:var(--navy-deep); }
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease, padding .3s ease;
+    padding:0 22px;
+  }
+  .faq-a p{ font-size:14.5px; color:var(--ink-soft); line-height:1.6; padding-bottom:20px; }
+  .faq-item.open .faq-a{ max-height:220px; }
+
+  /* ---------- FINAL CTA / FOOTER ---------- */
+  .final-cta{
+    background:var(--navy-deep);
+    color:var(--white);
+    text-align:center;
+    padding:80px 0;
+  }
+  footer{
+    background:var(--navy-deep);
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding:32px 0 110px;
+    color:rgba(255,255,255,0.45);
+    font-size:12.5px;
+    text-align:center;
+    line-height:1.7;
+  }
+
+  /* sticky mobile CTA */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:var(--navy-deep);
+    border-top:1px solid rgba(255,255,255,0.1);
+    padding:12px 16px;
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+  }
+  .sticky-cta .price{ color:var(--white); font-family:'JetBrains Mono',monospace; font-size:13px; }
+  .sticky-cta .price b{ display:block; font-family:'Sora',sans-serif; font-size:17px; color:var(--yellow); }
+  .sticky-cta .btn-primary{ padding:13px 22px; font-size:14px; }
+
+  /* reveal-on-scroll */
+  [data-reveal]{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease; }
+  [data-reveal].in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+    [data-reveal]{ opacity:1; transform:none; }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; }
+    .pain-grid{ grid-template-columns:repeat(2,1fr); }
+    .solution-inner{ grid-template-columns:1fr; }
+    .get-grid{ grid-template-columns:repeat(3,1fr); }
+    .bonus-grid{ grid-template-columns:repeat(2,1fr); }
+    .diff-grid{ grid-template-columns:1fr; }
+    .sticky-cta{ display:flex; }
+    .section{ padding:64px 0; }
+  }
+  @media (max-width: 600px){
+    .get-grid{ grid-template-columns:repeat(2,1fr); }
+    .offer-card{ padding:34px 22px; }
+    .bump-card{ flex-direction:column; text-align:left; }
+    .hero{ padding-bottom:150px; }
+    .nav .btn-primary span.long{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="badge">🧠</span>
+      Aprovação Express <span style="color:var(--yellow)">ENEM</span>
+    </div>
+    <a href="#oferta" class="btn btn-primary"><span class="long">Quero garantir meu acesso</span><span style="display:none">Garantir acesso</span></a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow on-dark">Para quem vai fazer o ENEM 2026</span>
+      <h1>Revise <em>o ENEM inteiro</em> sem se perder em apostila nenhuma.</h1>
+      <p class="lede">Mapas mentais organizados de Matemática, Linguagens, Humanas, Natureza e Redação — pra você estudar rápido, visual e sem gastar uma fortuna em cursinho.</p>
+      <div class="hero-ctas">
+        <a href="#oferta" class="btn btn-primary">Quero garantir meu acesso <span class="btn-arrow">→</span></a>
+        <a href="#solucao" class="btn btn-ghost">Ver como funciona</a>
+      </div>
+      <div class="trust-row">
+        <span><span class="dot"></span>Acesso imediato</span>
+        <span><span class="dot"></span>Direto do celular</span>
+        <span><span class="dot"></span>Garantia de 7 dias</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="mindmap-card">
+        <div class="app-preview">
+          <div class="live-pill"><span class="pulse"></span>1.200 alunos revisando agora</div>
+
+          <div class="rocket-block">
+            <div class="rocket-headline">🚀 Você está a um passo da sua aprovação</div>
+            <p class="rocket-sub">Pare de perder tempo decidindo o que estudar. A gente já organizou tudo pra você.</p>
+          </div>
+
+          <div class="check-list-v2">
+            <div class="check-item">
+              <span class="check-ic">✔</span>
+              <span>Revisões inteligentes</span>
+            </div>
+            <div class="check-item">
+              <span class="check-ic">✔</span>
+              <span>Cronograma automático</span>
+            </div>
+            <div class="check-item">
+              <span class="check-ic">✔</span>
+              <span>Tudo pronto pra você começar hoje</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-badge">
+          <div class="stars">★★★★★</div>
+          <div>
+            <b>4.9 / 5</b>
+            <span>+2.300 avaliações</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= DOR ================= -->
+<section class="section" id="dor">
+  <div class="wrap">
+    <div class="section-head" data-reveal>
+      <span class="eyebrow">Se isso parece com você...</span>
+      <h2 class="headline">A sensação de estar sempre um passo atrás</h2>
+      <p class="lede">Estudar pro ENEM sem direção é cansativo. Você não está sem esforço — está sem organização.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card" data-reveal>
+        <div class="num">01</div>
+        <h3>Tanta matéria, tão pouco tempo</h3>
+        <p>A prova cobra 5 áreas inteiras e a sensação é que o tempo nunca é suficiente pra dar conta de tudo.</p>
+      </div>
+      <div class="pain-card" data-reveal>
+        <div class="num">02</div>
+        <h3>Apostila de 300 páginas que ninguém termina</h3>
+        <p>Você começa animado, mas o material é tão grande que vira mais uma aba aberta e esquecida.</p>
+      </div>
+      <div class="pain-card" data-reveal>
+        <div class="num">03</div>
+        <h3>Cursinho bom custa caro</h3>
+        <p>Nem todo mundo pode pagar centenas de reais por mês só pra ter um material decente.</p>
+      </div>
+      <div class="pain-card" data-reveal>
+        <div class="num">04</div>
+        <h3>Material grátis tem, organização não</h3>
+        <p>A internet está cheia de PDF solto e vídeo aleatório — falta alguém juntar tudo num lugar só.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOLUÇÃO ================= -->
+<section class="section solution" id="solucao">
+  <div class="wrap solution-inner">
+    <div data-reveal>
+      <span class="eyebrow">A saída</span>
+      <h2 class="headline">Aprovação Express ENEM: sua central de revisão</h2>
+      <p class="lede">Em vez de mais um PDF gigante, você recebe conteúdo já mastigado em mapas mentais — pensado pra quem quer revisar rápido e lembrar na hora da prova.</p>
+
+      <div class="benefit-list">
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div><h4>Mapas mentais organizados</h4><p>Cada assunto resumido visualmente, sem enrolação.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div><h4>Conteúdo visual</h4><p>Seu cérebro memoriza imagem mais rápido que texto corrido.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div><h4>Revisão mais rápida</h4><p>Revise um assunto inteiro em minutos, não em horas.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div><h4>Material acessível</h4><p>Preço pensado pra quem não pode pagar cursinho caro.</p></div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">✓</div>
+          <div><h4>Estude de onde estiver</h4><p>Pelo celular no ônibus ou no computador em casa.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="node-diagram" data-reveal>
+      <div class="material-preview">
+        <div class="mp-top">
+          <span>PRÉVIA DO MATERIAL</span>
+          <span class="mp-tag">5 áreas</span>
+        </div>
+        <div class="mp-body">
+          <div class="mp-title">Como o conteúdo é organizado</div>
+          <div class="mp-subtitle">Um mapa mental completo pra cada tópico das 5 áreas do ENEM</div>
+
+          <div class="card-deck">
+            <div class="deck-card" style="background:#FFF6DF; transform:rotate(-6deg); z-index:1;">
+              <span class="deck-dot" style="background:#FFC93C;">MAT</span>
+              <span>Matemática</span>
+            </div>
+            <div class="deck-card" style="background:#FFEDE6; transform:rotate(-2deg); z-index:2;">
+              <span class="deck-dot" style="background:#FF6B35;">LIN</span>
+              <span>Linguagens</span>
+            </div>
+            <div class="deck-card" style="background:#E8F0FE; transform:rotate(3deg); z-index:3;">
+              <span class="deck-dot" style="background:#2F6FE4;">HUM</span>
+              <span>Humanas</span>
+            </div>
+            <div class="deck-card" style="background:#E7FBEF; transform:rotate(7deg); z-index:4;">
+              <span class="deck-dot" style="background:#4ADE80;">NAT</span>
+              <span>Natureza</span>
+            </div>
+          </div>
+
+          <div class="mp-lock">🔒 Mapas mentais completos liberados dentro da área de membros, assim que seu acesso é confirmado.</div>
+
+          <div class="stat-chip-row">
+            <span class="stat-chip">⚡ Revisão rápida</span>
+            <span class="stat-chip">🎯 100% visual</span>
+            <span class="stat-chip">📱 Pelo celular</span>
+            <span class="stat-chip">💰 Acessível</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= O QUE VOCÊ RECEBE ================= -->
+<section class="section get-section" id="conteudo">
+  <div class="wrap">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;text-align:center;" data-reveal>
+      <span class="eyebrow">O que você recebe</span>
+      <h2 class="headline">Tudo o que você precisa pra revisar, em um só lugar</h2>
+    </div>
+
+    <div class="get-grid">
+      <div class="subject-card" data-reveal>
+        <div class="node-dot" style="background:#FFC93C;color:#12294F;">MAT</div>
+        <h4>Mapas mentais de Matemática</h4>
+      </div>
+      <div class="subject-card" data-reveal>
+        <div class="node-dot" style="background:#FF6B35;">LIN</div>
+        <h4>Mapas mentais de Linguagens</h4>
+      </div>
+      <div class="subject-card" data-reveal>
+        <div class="node-dot" style="background:#2F6FE4;">HUM</div>
+        <h4>Mapas mentais de Ciências Humanas</h4>
+      </div>
+      <div class="subject-card" data-reveal>
+        <div class="node-dot" style="background:#4ADE80;color:#12294F;">NAT</div>
+        <h4>Mapas mentais de Ciências da Natureza</h4>
+      </div>
+      <div class="subject-card" data-reveal>
+        <div class="node-dot" style="background:#12294F;">RED</div>
+        <h4>Mapas mentais de Redação</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIFERENCIAL ================= -->
+<section class="section" id="diferencial">
+  <div class="wrap">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;text-align:center;" data-reveal>
+      <span class="eyebrow">Por que não estudar sozinho?</span>
+      <h2 class="headline">A diferença está na organização</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-col before" data-reveal>
+        <span class="diff-tag">ESTUDANDO SOZINHO</span>
+        <ul>
+          <li>PDFs enormes e difíceis de revisar</li>
+          <li>Conteúdo espalhado em vários lugares</li>
+          <li>Falta de organização e direção</li>
+          <li>Sensação de estar sempre atrasado</li>
+        </ul>
+      </div>
+      <div class="diff-col after" data-reveal>
+        <span class="diff-tag">COM APROVAÇÃO EXPRESS</span>
+        <ul>
+          <li>Revisão organizada por assunto</li>
+          <li>Conteúdo resumido em mapas visuais</li>
+          <li>Estudo mais eficiente, sem enrolação</li>
+          <li>Clareza sobre o que revisar a cada dia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFERTA ================= -->
+<section class="section offer-section" id="oferta">
+  <div class="wrap" style="text-align:center;">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;text-align:center;color:#fff;" data-reveal>
+      <span class="eyebrow on-dark">Oferta de lançamento</span>
+      <h2 class="headline" style="color:#fff;">Garanta sua revisão completa do ENEM</h2>
+      <p class="lede" style="color:rgba(255,255,255,0.75);">Acesso imediato a todo o conteúdo, direto na sua área de membros.</p>
+    </div>
+
+    <div class="offer-card" data-reveal>
+      <span class="stamp">APROVAÇÃO EXPRESS ENEM</span>
+      <h3>Tudo incluso no seu acesso</h3>
+      <ul class="value-stack">
+        <li><b>+400 mapas mentais</b><span class="val">incluso</span></li>
+        <li><b>Checklist ENEM</b><span class="val">incluso</span></li>
+        <li><b>Atualizações do material</b><span class="val">incluso</span></li>
+      </ul>
+      <div class="price-block">
+        <div class="price-old">de R$ 197,00</div>
+        <div class="price-new"><sup>R$</sup>19<span style="font-size:20px;">,99</span></div>
+        <div class="price-note">pagamento único · acesso imediato</div>
+      </div>
+      <a href="#" class="btn btn-primary btn-block">Quero garantir meu acesso <span class="btn-arrow">→</span></a>
+      <div class="guarantee-row">
+        <div class="guarantee-badge">🛡️</div>
+        <div style="text-align:left;">Garantia incondicional de <b>7 dias</b>. Não gostou? Devolvemos 100% do seu dinheiro.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="section faq-section" id="faq">
+  <div class="wrap">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;text-align:center;" data-reveal>
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2 class="headline">Ainda com alguma dúvida?</h2>
+    </div>
+    <div class="faq-list" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q">Serve para quem está começando agora?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim. Os mapas mentais foram feitos justamente pra organizar quem não sabe por onde começar — você segue a ordem das áreas e vai revisando no seu ritmo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Preciso estudar quantas horas por dia?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Não existe um número fixo. Como o conteúdo já vem resumido, você consegue revisar bastante coisa em pouco tempo — inclusive nos intervalos do dia.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Posso acessar pelo celular?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim, o material funciona tanto no celular quanto no computador, então dá pra revisar de onde estiver.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como recebo o acesso?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Assim que a compra é confirmada, você recebe o acesso liberado na sua área de membros.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">É indicado pra quem não faz cursinho?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Sim, foi pensado exatamente pra isso: uma alternativa organizada e acessível pra quem não tem condições de pagar um cursinho completo.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="final-cta">
+  <div class="wrap" data-reveal>
+    <h2 class="headline" style="color:#fff;">Sua revisão do ENEM começa agora</h2>
+    <p class="lede" style="color:rgba(255,255,255,0.7); margin:14px auto 30px;max-width:460px;">Organize sua preparação hoje e chegue mais confiante no dia da prova.</p>
+    <a href="#oferta" class="btn btn-primary">Quero garantir meu acesso <span class="btn-arrow">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Aprovação Express ENEM é um produto digital independente e não possui qualquer vínculo com o INEP ou com o Ministério da Educação.</p>
+    <p style="margin-top:6px;">© 2026 Aprovação Express ENEM. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- ================= STICKY MOBILE CTA ================= -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="price">por apenas<b>R$ 19,99</b></div>
+  <a href="#oferta" class="btn btn-primary">Garantir acesso</a>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.faq-item');
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el){ el.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); }
+    });
+  });
+
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Hide sticky CTA when the offer section is in view
+  var offerSection = document.getElementById('oferta');
+  var stickyCta = document.getElementById('stickyCta');
+  if('IntersectionObserver' in window && stickyCta){
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        stickyCta.style.display = (entry.isIntersecting && window.innerWidth <= 980) ? 'none' : '';
+      });
+    }, { threshold: 0.2 });
+    io2.observe(offerSection);
+  }
+</script>
+
+</body>
+</html>
